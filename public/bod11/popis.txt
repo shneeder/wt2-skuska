@@ -1,0 +1,10 @@
+neviem ako to dat dokopy na gite
+
+zatial co mam tak doplnok pre admina - tlacidlo na spustenie geocoding
+samotny geocoding je mimo, aby to nebolo vsetko na stranke admina
+
+a pridanie tej samotnej mapy na uvodnu stranku, neviem kto tam este co chce dolpnat,
+ale tak kod pre nu je pod hlavna.php
+
+potom uz iba v js co mam klikanie na tlacidla treba nastavit linky ako maju byt,
+len neviem kto co ako este bude menit takze to nechavam takto ...
