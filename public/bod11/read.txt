@@ -1,0 +1,8 @@
+netusim ako to dalej davat dokopy ...
+
+na hlavnu stranku mam dorobenen to pod hlavna.php
+
+pre admina tlacidlo na geocoding pod admin.php 
+a samotny geocoding pod geocoding.php aby nebolo vsetko pokope
+
+a potom samotne kliknutia na tlacidla cez clickHandler.js
