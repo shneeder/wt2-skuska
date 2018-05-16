@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'WT2projekt'),
 
     /*
     |--------------------------------------------------------------------------
@@ -154,11 +154,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        WT2projekt\Providers\AppServiceProvider::class,
+        WT2projekt\Providers\AuthServiceProvider::class,
+        // WT2projekt\Providers\BroadcastServiceProvider::class,
+        WT2projekt\Providers\EventServiceProvider::class,
+        WT2projekt\Providers\RouteServiceProvider::class,
 
     ],
 

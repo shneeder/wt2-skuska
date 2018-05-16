@@ -25,12 +25,12 @@ class CreateUsersTable extends Migration
             $table->string('street');
             $table->string('postal_code');
             $table->string('town');
-            $table->float('latitude', 11, 2);
-            $table->float('longtitude', 11, 2);
+            $table->float('latitude')->default(0);
+            $table->float('longtitude')->default(0);
             $table->string('school_name');
             $table->string('school_address');
-            $table->float('school_lat', 11, 2);
-            $table->float('school_lng', 11, 2);
+            $table->float('school_lat')->default(0);
+            $table->float('school_lng')->default(0);
             $table->boolean('isAdmin')->default(false);
         });
     }
