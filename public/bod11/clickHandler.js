@@ -17,14 +17,14 @@ $(document).ready(function(){
     $("#showSko").click(function(){
       $.ajax({
          success: function(){
-            window.location.href = 'http://localhost/nove/hlavna.php?show=skoly';  
+            window.location.href = 'https://github.com/shneeder/wt2-skuska/blob/bod11/public/bod11/clickHandler.js?show=skoly';  
             }     
       }); 
     });
     $("#showByd").click(function(){
       $.ajax({
          success: function(){
-            window.location.href = 'http://localhost/nove/hlavna.php?show=bydliska';  
+            window.location.href = 'https://github.com/shneeder/wt2-skuska/blob/bod11/public/bod11/clickHandler.js?show=bydliska';  
             }     
       }); 
     });
