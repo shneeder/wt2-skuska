@@ -18,4 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin', 'HomeController@admin')->name('admin');
+Route::get('/admin', function() {
+    if (Gate::allows('check-admin', Auth::user())) {
+        return view('admin');
+    } else {
+        return 'Access denied!';
+    }
+});
