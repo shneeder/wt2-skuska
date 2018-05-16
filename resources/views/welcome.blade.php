@@ -93,7 +93,7 @@
 <!-- php kod pre ziskanie dat pre markery na mape (adresy ulozene v databaze)-->
 <?php
 
-require('config.php');
+require('https://github.com/shneeder/wt2-skuska/tree/bod11/resources/bod11/config.php');
 //napojenie na DB
 $link = mysqli_connect($dbconfig['hostname'],$dbconfig['username'],$dbconfig['password'],$dbconfig['dbname']) or die("Error " . mysqli_connect_error($link));
 mysqli_set_charset($link,"utf8");
