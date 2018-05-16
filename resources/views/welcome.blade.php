@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>WT 2 - projekt</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -79,15 +79,12 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Webové Technológie 2 <br>- záverečný projekt
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://elearn.elf.stuba.sk/moodle/pluginfile.php/57496/mod_resource/content/9/pokyny2018.pdf">Zadanie</a>
+                    <a href="https://github.com/shneeder/wt2-skuska">GitHub</a>
                 </div>
             </div>
         </div>
