@@ -8,3 +8,9 @@ ale tak kod pre nu je pod hlavna.php
 
 potom uz iba v js co mam klikanie na tlacidla treba nastavit linky ako maju byt,
 len neviem kto co ako este bude menit takze to nechavam takto ...
+
+
+-------------------------------
+
+doplnil som k druhej ulohe nacitanie z excelu, takze by to malo ist v pohode potom,
+len goecoding pri cca 60 adresach trval kus dlshsie

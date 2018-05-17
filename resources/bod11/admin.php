@@ -2,15 +2,13 @@
 <!DOCTYPE html>
 <html lang="sk">
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <title>Zadanie final - geocoding </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="clickHandler.js"></script>
   </head>
   
 <?php
-
-
 
 /*  Nacitanie dat z excelu osoby2.csv po riadkoch */
 $riadky = array();
@@ -21,11 +19,10 @@ if(isset($_FILES['excelFile']) && !empty($_FILES['excelFile']['tmp_name']) ){
     $counter = 0;
     while (($line = fgets($excel)) !== false) {
 
-      //$line = iconv("CP1251", "UTF-8", $line);
-      $line = utf8_encode($line);
+      $line = iconv("UTF-8", "UTF-8", $line);
       if ($counter == 0) $counter += 1;
-      elseif ($counter <= 2){
-        $counter++;
+      else {
+
         if(strlen($line) > 5) array_push($riadky, $line);
       }
       if(feof($excel)) break;
@@ -57,7 +54,7 @@ usort($data, 'querySort');
 print("<pre>".print_r($data,true)."</pre>");
 
 /* vkladanie do databazy*/
-/*
+
 require('config.php');
 //napojenie na DB
 $link = mysqli_connect($dbconfig['hostname'],$dbconfig['username'],$dbconfig['password'],$dbconfig['dbname']) or die("Error " . mysqli_connect_error($link));
@@ -86,13 +83,13 @@ if (!empty($data)){
       $query3 .= 'VALUES ("'.$data[$i][4].'", "'.$data[$i][5].'")';
       if(!mysqli_query($link, $query3)) print("<pre>".print_r(mysqli_error($link),true)."</pre>");
       else {
-        $query4 =  'SELECT id FROM school WHERE adress = "'.$data[$i][5].'"';
+        $query4 =  'SELECT id as id FROM school WHERE adress = "'.$data[$i][5].'"';
         $result4 = mysqli_query($link, $query4);
         $id = mysqli_fetch_object($result);
         $heslo = strval(4242*$i);
         $query2 =  'INSERT INTO users(name, email, password, first_name, last_name, school_id, street, postal_code, town)';
         $query2 .= 'VALUES ("excel", "'.$data[$i][3].'", '.$heslo.', "'.$data[$i][2].'", "'.$data[$i][1].'", '.$id->id.', "'.$data[$i][6].'", '.intval($data[$i][7]).', "'.$data[$i][8].'")';
-        if(!mysqli_query($link, $query2)) print("<pre>".print_r('chyba pri vkladani zaznamu s emailom '.$data[$i][3].' do databazy',true)."</pre>");
+        if(!mysqli_query($link, $query2)) print("<pre>".print_r(mysqli_error($link),true)."</pre>");
         else {
           $msg = 'Úspešne ste boli zaregistrovaný na stránke http://147.175.98.234/  Vaše heslo je '.$heslo.'';
           mail($data[$i][3],"WT2 - zaverecny projekt",$msg);
@@ -102,7 +99,7 @@ if (!empty($data)){
     
   }
 } 
-*/
+
 ?>
   
 	<body>
@@ -110,6 +107,9 @@ if (!empty($data)){
       <input type="file" name="excelFile">
       <input type="submit" value="Potvrď">    
     </form>
+    <p>Načítanie adries zo súboru. Testované je načítanie z .txt súboru, keďže s excelom je problém pri utf-8.
+       Čiže obsah osoby2.csv bol prekopírovaný do napr. osoby2.txt a načítaný bol potom tento .txt súbor.
+    </p>
   
   
     <br>
