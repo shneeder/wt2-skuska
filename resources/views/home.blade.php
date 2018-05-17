@@ -2,6 +2,13 @@
 
 @section('content')
     @if (Auth::user()->isAdmin == 1)
+    <div class="container">
+        <nav class="navbar navbar-inverse">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ URL::to('api/users') }}">Používatelia</a>
+                <a class="navbar-brand" href="{{ URL::to('api/users/create') }}">Vytvor používateľa</a>
+            </div>
+        </nav>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -20,6 +27,7 @@
                 </div>
             </div>
         </div>
+    </div>
     @else
         <div class="container">
             <div class="row justify-content-center">
