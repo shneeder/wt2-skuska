@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/worktable', 'WorktableController@index');
 Route::get('/admin', function() {
     if (Gate::allows('check-admin', Auth::user())) {
         return view('admin');

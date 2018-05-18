@@ -22,8 +22,8 @@
 <div class="container">
     <div class="row mb-2">
         <h1>Mapa</h1>
-
         <div id="map"></div>
+
     </div>
     <div class="row mb-2">
         <h1>Treningy</h1>
@@ -46,7 +46,7 @@
             <?php
             require "./config.php";
             // Create connection
-            $userID=2;
+            $userID=1;
             $conn = mysqli_connect($servername, $username, $password, $dbname);
             $i=1;
             $prejdeneKM=0;
@@ -56,7 +56,7 @@
             $kLat=0;
 
 
-            $sql = "SELECT * FROM route JOIN active ON active.is_route=route.id  where active.id_user = '$userID'";
+            $sql = "SELECT * FROM route  where id=".intval($_POST['idcko'])."";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 // output data of each row
@@ -69,16 +69,8 @@
                 }
             }
 
-            $sql = "SELECT * FROM active where id_user = '$userID'";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                // output data of each row
-                while($row = $result->fetch_assoc()) {
-                    $cesta=$row["is_route"];
-                }
-            }
 
-            $sql = "SELECT sum(already_run_km) as prejdeneKM FROM Training JOIN active ON Training.user_id = active.id_user where Training.user_id = '$userID' AND Training.route_id ='$cesta'";
+            $sql = "SELECT sum(already_run_km) as prejdeneKM FROM training where user_id = '$userID' AND route_id =".intval($_POST['idcko'])."";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 // output data of each row
@@ -88,7 +80,7 @@
             }
 
 
-            $sql = "SELECT * FROM Training JOIN active ON Training.user_id = active.id_user where Training.user_id = '$userID' AND Training.route_id ='$cesta'";
+            $sql = "SELECT * FROM training where user_id = '$userID' AND route_id =".intval($_POST['idcko'])."";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 // output data of each row
@@ -129,72 +121,11 @@
             <label for="koncLng">koncLng</label>
             <input id="koncLng" type="text" name="koncLng" value="<?php echo htmlspecialchars($kLng);?>" disabled><br>
 
+
         </div>
 
-
-
-        <div class="col-md-6">
-
-            <form action="test.php" method="post">
-                <h1>Pridaj trening</h1>
-                <label for="km">KM</label>
-                <span class="red" >*</span>
-                <input id="km" type="number" name="km" min="0.01" step="0.01"required onchange="kontrola()" value="1"><br>
-                <p class="red" id="red" hidden>prekrocena hodnota</p>
-
-                <label for="datum">datum</label>
-                <input id="datum" type="date" name="datum"><br>
-
-                <label for="casZaciatok">casZaciatok</label>
-                <input id="casZaciatok" type="time" name="casZaciatok"><br>
-
-                <label for="casKoniec">casKoniec</label>
-                <input id="casKoniec" type="time" name="casKoniec"><br>
-
-                <label for="gpsStartLat">gpsStartLat</label>
-                <input id="gpsStartLat" type="text" name="gpsStartLat" value="0" ><br>
-
-                <label for="gpsStartLng">gpsStartLng</label>
-                <input id="gpsStartLng" type="text" name="gpsStartLng" value="0" ><br>
-
-                <label for="gpsCielLat">gpsCielLat</label>
-                <input id="gpsCielLat" type="text" name="gpsCielLat" value="0"><br>
-
-                <label for="gpsCielLng">gpsCielLng</label>
-                <input id="gpsCielLng" type="text" name="gpsCielLng" value="0"><br>
-
-                <label for="evaluation">evaluation</label>
-                <input  class="radiob" type="radio" name="evaluation" value="1" checked="checked"> 1
-                <input class="radiob"type="radio" name="evaluation" value="2"> 2
-                <input class="radiob"type="radio" name="evaluation" value="3"> 3
-                <input class="radiob"type="radio" name="evaluation" value="4"> 4
-                <input class="radiob"type="radio" name="evaluation" value="5"> 5<br>
-
-                <label for="poznamka">poznamka</label>
-                <textarea id="poznamka" name="poznamka" ></textarea><br>
-
-                <input id="submit" class="subm" type="submit" value="Submit" onclick="kontrola()" name="submit" disabled>
-            </form>
-        </div>
     </div>
-
-    <script>
-        function kontrola() {
-            console.log(document.getElementById("km").value);
-            console.log(document.getElementById("ostavaKM").value);
-
-            if (document.getElementById("km").value > document.getElementById("ostavaKM").value){
-                document.getElementById("submit").disabled = true;
-                document.getElementById("red").hidden=false;
-            }
-            else {
-                document.getElementById("submit").disabled = false;
-                document.getElementById("red").hidden=true;
-
-            }
-        }
-    </script>
-    <script src="script.js"></script>
+    <script src="script2.js"></script>
 </div>
 </body>
 
