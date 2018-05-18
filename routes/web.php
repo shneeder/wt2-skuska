@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 /*Route::get('/admin', function() {
     if (Gate::allows('check-admin', Auth::user())) {
         return view('admin');

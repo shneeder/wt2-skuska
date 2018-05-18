@@ -36,4 +36,13 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function authenticated(Request $request, $user)
+    {
+        if (!$user->verified) {
+            auth()->logout();
+            return back()->with('warning', 'Musíte potvrdiť svoj email. Odoslali sme Vám aktivačný email, skontrolujte Váš email, prosím.');
+        }
+        return redirect()->intended($this->redirectPath());
+    }
 }

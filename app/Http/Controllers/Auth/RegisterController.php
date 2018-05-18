@@ -3,7 +3,9 @@
 namespace WT2projekt\Http\Controllers\Auth;
 
 use WT2projekt\User;
+use WT2projekt\VerifyUser;
 use WT2projekt\Http\Controllers\Controller;
+use WT2projekt\Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -63,10 +65,44 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $verifyUser = VerifyUser::create([
+            'user_id' => $user->id,
+            'token' => str_random(40)
+        ]);
+
+        Mail::to($user->email)->send(new VerifyMail($user));
+
+        return $user;
+    }
+
+    public function verifyUser($token)
+    {
+        $verifyUser = VerifyUser::where('token', $token)->first();
+        if(isset($verifyUser) ){
+            $user = $verifyUser->user;
+            if(!$user->verified) {
+                $verifyUser->user->verified = 1;
+                $verifyUser->user->save();
+                $status = "Váš e-mail je overený. Môžte sa prihlásiť.";
+            }else{
+                $status = "Váš e-mail bol už overený. Môžte sa prihlásiť.";
+            }
+        }else{
+            return redirect('/login')->with('warning', "Váš email sa nedá overiť.");
+        }
+
+        return redirect('/login')->with('status', $status);
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        $this->guard()->logout();
+        return redirect('/login')->with('status', 'Odoslali sme Vám aktivačný kód. Skontrolujte si email and kliknite na verifikačnú linku.');
     }
 }

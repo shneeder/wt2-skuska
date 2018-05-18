@@ -1,17 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (Auth::user()->isAdmin == 1)
     <div class="container">
         <nav class="navbar navbar-inverse">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{ URL::to('users') }}">Používatelia</a>
-                <a class="navbar-brand" href="{{ URL::to('users/create') }}">Vytvor používateľa</a>
+                <a class="navbar-brand" href="{{ URL::to('user') }}">Používatelia</a>
+                <a class="navbar-brand" href="{{ URL::to('user/create') }}">Vytvor používateľa</a>
             </div>
-            <ul class="nav navbar-nav">
-                <li><a href="{{ URL::to('users') }}">Používatelia</a></li>
-                <li><a href="{{ URL::to('users/create') }}">Vytvor používateľa</a>
-            </ul>
         </nav>
         <h1>Používatelia</h1>
         @if (session('status'))
@@ -50,25 +45,4 @@
             </tbody>
         </table>
     </div>
-    @else
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">Dashboard</div>
-
-                        <div class="card-body">
-                            @if (session('status'))
-                                <div class="alert alert-success">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
-
-                            You are not authorized, only Admin can view users!
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
 @endsection

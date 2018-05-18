@@ -5,8 +5,8 @@
     <div class="container">
         <nav class="navbar navbar-inverse">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{ URL::to('api/users') }}">Používatelia</a>
-                <a class="navbar-brand" href="{{ URL::to('api/users/create') }}">Vytvor používateľa</a>
+                <a class="navbar-brand" href="{{ URL::to('api/user') }}">Používatelia</a>
+                <a class="navbar-brand" href="{{ URL::to('api/user/create') }}">Vytvor používateľa</a>
             </div>
         </nav>
         <div class="container">

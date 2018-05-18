@@ -20,18 +20,19 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('street');
-            $table->string('postal_code');
-            $table->string('town');
+            $table->string('first_name')->default("");
+            $table->string('last_name')->default("");
+            $table->string('street')->default("");
+            $table->string('postal_code')->default("");
+            $table->string('town')->default("");
             $table->float('latitude')->default(0);
             $table->float('longtitude')->default(0);
-            $table->string('school_name');
-            $table->string('school_address');
+            $table->string('school_name')->default("");
+            $table->string('school_address')->default("");
             $table->float('school_lat')->default(0);
             $table->float('school_lng')->default(0);
             $table->boolean('isAdmin')->default(false);
+            $table->boolean('verified')->default(false);
         });
     }
 
