@@ -5,7 +5,9 @@ namespace WT2projekt\Http\Controllers\Auth;
 use WT2projekt\User;
 use WT2projekt\VerifyUser;
 use WT2projekt\Http\Controllers\Controller;
-use WT2projekt\Mail;
+use Mail;
+use WT2projekt\Mail\VerifyMail;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -85,10 +87,14 @@ class RegisterController extends Controller
     {
         $verifyUser = VerifyUser::where('token', $token)->first();
         if(isset($verifyUser) ){
-            $user = $verifyUser->user;
+            $user_id = $verifyUser->user_id;
+            $user = User::where('id', $user_id)->first();
+            //$status = print_r($user, true);
             if(!$user->verified) {
-                $verifyUser->user->verified = 1;
-                $verifyUser->user->save();
+                //$verifyUser->user->verified = 1;
+                //$verifyUser->user->save();
+                $user->verified = 1;
+                $user->save();
                 $status = "Váš e-mail je overený. Môžte sa prihlásiť.";
             }else{
                 $status = "Váš e-mail bol už overený. Môžte sa prihlásiť.";
@@ -96,7 +102,7 @@ class RegisterController extends Controller
         }else{
             return redirect('/login')->with('warning', "Váš email sa nedá overiť.");
         }
-
+        
         return redirect('/login')->with('status', $status);
     }
 

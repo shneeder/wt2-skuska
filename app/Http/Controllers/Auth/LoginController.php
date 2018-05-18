@@ -4,6 +4,7 @@ namespace WT2projekt\Http\Controllers\Auth;
 
 use WT2projekt\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {

@@ -2,6 +2,7 @@
 
 namespace WT2projekt\Mail;
 
+use View;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -17,7 +18,7 @@ class VerifyMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user)
     {
         $this->user = $user;
     }
@@ -29,6 +30,6 @@ class VerifyMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('verifyUser');
     }
 }
