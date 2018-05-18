@@ -70,7 +70,7 @@
             }
 
 
-            $sql = "SELECT sum(already_run_km) as prejdeneKM FROM Training where user_id = '$userID' AND route_id =".intval($_POST['idcko'])."";
+            $sql = "SELECT sum(already_run_km) as prejdeneKM FROM training where user_id = '$userID' AND route_id =".intval($_POST['idcko'])."";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 // output data of each row
@@ -80,7 +80,7 @@
             }
 
 
-            $sql = "SELECT * FROM Training where user_id = '$userID' AND route_id =".intval($_POST['idcko'])."";
+            $sql = "SELECT * FROM training where user_id = '$userID' AND route_id =".intval($_POST['idcko'])."";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 // output data of each row

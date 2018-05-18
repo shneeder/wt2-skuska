@@ -46,7 +46,7 @@
             <?php
             require "./config.php";
             // Create connection
-            $userID=2;
+            $userID=1;
             $conn = mysqli_connect($servername, $username, $password, $dbname);
             $i=1;
             $prejdeneKM=0;
@@ -54,6 +54,7 @@
             $pLat=0;
             $kLng=0;
             $kLat=0;
+
 
             $sql = "SELECT * FROM route JOIN active ON active.is_route=route.id  where active.id_user = '$userID'";
             $result = $conn->query($sql);
@@ -77,7 +78,7 @@
                 }
             }
 
-            $sql = "SELECT sum(already_run_km) as prejdeneKM FROM Training JOIN active ON Training.user_id = active.id_user where Training.user_id = '$userID' AND Training.route_id ='$cesta'";
+            $sql = "SELECT sum(already_run_km) as prejdeneKM FROM training JOIN active ON training.user_id = active.id_user where training.user_id = '$userID' AND training.route_id ='$cesta'";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 // output data of each row
@@ -87,7 +88,7 @@
             }
 
 
-            $sql = "SELECT * FROM Training JOIN active ON Training.user_id = active.id_user where Training.user_id = '$userID' AND Training.route_id ='$cesta'";
+            $sql = "SELECT * FROM training JOIN active ON training.user_id = active.id_user where training.user_id = '$userID' AND training.route_id ='$cesta'";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 // output data of each row
@@ -172,7 +173,7 @@
                 <label for="poznamka">poznamka</label>
                 <textarea id="poznamka" name="poznamka" ></textarea><br>
 
-                <input id="submit" class="subm" type="submit" value="Submit" onclick="kontrola()" name="submit" disabled>
+                <input id="submit" class="subm" type="submit" value="Submit" onclick="kontrola()" name="submit" >
             </form>
         </div>
     </div>

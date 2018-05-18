@@ -15,7 +15,7 @@ if( isset($_POST['submit']))
 
         }
     }
-    $sql = "INSERT INTO Training (already_run_km, datum, exact_time, finish_time, user_id, route_id, evaluation, note, gpsStartLng,gpsStartLat,gpsCielLng,gpsCielLat)
+    $sql = "INSERT INTO training (already_run_km, datum, exact_time, finish_time, user_id, route_id, evaluation, note, gpsStartLng,gpsStartLat,gpsCielLng,gpsCielLat)
 VALUES ('".$_POST['km']."','".$_POST['datum']."','".$_POST['casZaciatok']."','".$_POST['casKoniec']."','".$userID."','".$cesta."','".$_POST['evaluation']."','".$_POST['poznamka']."',
 '".$_POST['gpsStartLng']."','".$_POST['gpsStartLat']."','".$_POST['gpsCielLng']."','".$_POST['gpsCielLat']."')";
 
