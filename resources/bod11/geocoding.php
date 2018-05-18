@@ -86,7 +86,7 @@ if (mysqli_num_rows($result) > 0 ){
   mysqli_free_result($result);     
 }
 else echo '<p>Chyba pri načítaní údajov z databázy</p>';
-
+mysqli_close($link);
 ?>
 
 	</body>  

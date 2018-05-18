@@ -99,7 +99,7 @@ if (!empty($data)){
     
   }
 } 
-
+mysqli_close($link);
 ?>
   
 	<body>

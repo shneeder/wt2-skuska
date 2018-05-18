@@ -107,8 +107,7 @@ if (mysqli_num_rows($result) > 0 ){
 mysqli_free_result($result);
 //print("<pre>".print_r($poleAdresy,true)."</pre>");       //kontrolny vypis
 }
-
-
+mysqli_close($link);
 ?>
   
   <div id="mapaData" style="margin-left:2cm;
