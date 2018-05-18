@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace WT2projekt\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use WT2projekt\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller
