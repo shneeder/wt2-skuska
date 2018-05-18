@@ -26,10 +26,18 @@
                     <td></td>
                   </tr>
                   <tr>
-                    <th scope="row">2</th>
+                    <th scope="row">2 - registrácia</th>
                     <td></td>
                     <td class="text-center">&#10004;</td>
                     <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2 - load CSV</th>
+                    <td></td>
+                    <td></td>
+                    <td class="text-center">&#10004;</td>
                     <td></td>
                     <td></td>
                   </tr>
@@ -73,29 +81,29 @@
                     <td></td>
                     <td></td>
                   </tr>
-                  <tr class="text-white bg-dark">
+                  <tr>
                     <th scope="row">8</th>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td class="text-center">&#10004;</td>
                   </tr>
-                  <tr class="text-white bg-dark">
+                  <tr>
                     <th scope="row">9</th>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td class="text-center">&#10004;</td>
                   </tr>
-                  <tr class="text-white bg-dark">
+                  <tr>
                     <th scope="row">10</th>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td class="text-center">&#10004;</td>
                   </tr>
                   <tr>
                     <th scope="row">11</th>
