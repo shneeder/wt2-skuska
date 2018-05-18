@@ -94,7 +94,7 @@
 <!-- php kod pre ziskanie dat pre markery na mape (adresy ulozene v databaze)-->
 <?php
 
-require('https://github.com/shneeder/wt2-skuska/tree/bod11/resources/bod11/config.php');
+require $_SERVER['DOCUMENT_ROOT'].'/bod11/config.php';
 //napojenie na DB
 $link = mysqli_connect($dbconfig['hostname'],$dbconfig['username'],$dbconfig['password'],$dbconfig['dbname']) or die("Error " . mysqli_connect_error($link));
 mysqli_set_charset($link,"utf8");
@@ -118,7 +118,9 @@ if(isset($_GET['show'])){
   
 if($def == "skoly"){
 //zistenie poctu skol a ich adresy
-$query0 = 'SELECT id, adress as adresa, name as ssNazov, latitude AS lat, longtitude AS lng FROM school ORDER BY adress';
+$query0 = 'SELECT CONCAT(first_name, " ",last_name) as student,
+      school_address as adresa, school_name as ssNazov, school_lat AS lat, school_lng AS lng
+      FROM users ORDER BY school_address';
 $result = mysqli_query($link, $query0);
 if (mysqli_num_rows($result) > 0 ){
   while($obj = mysqli_fetch_object($result)){
@@ -129,14 +131,15 @@ if (mysqli_num_rows($result) > 0 ){
       array_push($skola, $obj->ssNazov);
       array_push($skola, $obj->lat);
       array_push($skola, $obj->lng);
+      array_push($skola, $obj->student);
     
-      $query1 = 'SELECT CONCAT(first_name, " ",last_name) as student FROM users WHERE school_id ="'.$obj->id.'"';
+      /*$query1 = 'SELECT CONCAT(first_name, " ",last_name) as student FROM users WHERE school_id ="'.$obj->id.'"';
       $result1 = mysqli_query($link, $query1);
       while($student = mysqli_fetch_object($result1)){
         array_push($skolaStudenti, $student->student);
       }
       mysqli_free_result($result1);
-      array_push($skola, $skolaStudenti);
+      array_push($skola, $skolaStudenti);*/
       //pridanie do vysledneho pola a resetovanie pola $skola
       array_push($poleSkoly, $skola);         
       unset($skolaStudenti);
