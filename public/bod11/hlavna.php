@@ -1,100 +1,22 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <meta charset="utf-8">
+    <title>Zadanie final - geocoding </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="clickHandler.js"></script>
+  </head>
+  
+	<body>
+  <br>
+  <button id="showSko"> Školy </button>
+  <button id="showByd"> Bydliská </button>
+  <p>Tlačidlá pre prepínanie zobrazenie dát. Prednastavená možnosť je zobrazenie dát ohľadom navštevovaných škôl.
+  </p>
 
-        <title>WT 2 - projekt</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script src="bod11/clickHandler.js"></script>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-            .full-height {
-                height: 100vh;
-            }
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-            .position-ref {
-                position: relative;
-            }
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-            .content {
-                text-align: center;
-            }
-            .title {
-                font-size: 84px;
-            }
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Webové Technológie 2 <br>- záverečný projekt
-                </div>
-
-                <div class="links">
-                    <a href="https://elearn.elf.stuba.sk/moodle/pluginfile.php/57496/mod_resource/content/9/pokyny2018.pdf">Zadanie</a>
-                    <a href="https://github.com/shneeder/wt2-skuska">GitHub</a>
-                    <a href="/wt2/zoznam.php">Trasy</a>
-                    <a href="/worktable">Rozdelenie uloh</a>
-                </div>
-            </div>
-        </div>
-        
-        <br>
-        <button id="showSko"> Školy </button>
-        <button id="showByd"> Bydliská </button>
-        <p>Tlačidlá pre prepínanie zobrazenie dát. Prednastavená možnosť je zobrazenie dát ohľadom navštevovaných škôl.
-        </p>
-
-<!-- php kod pre ziskanie dat pre markery na mape (adresy ulozene v databaze)-->
 <?php
 
-require('https://github.com/shneeder/wt2-skuska/tree/bod11/resources/bod11/config.php');
+require('config.php');
 //napojenie na DB
 $link = mysqli_connect($dbconfig['hostname'],$dbconfig['username'],$dbconfig['password'],$dbconfig['dbname']) or die("Error " . mysqli_connect_error($link));
 mysqli_set_charset($link,"utf8");
@@ -185,9 +107,10 @@ if (mysqli_num_rows($result) > 0 ){
 mysqli_free_result($result);
 //print("<pre>".print_r($poleAdresy,true)."</pre>");       //kontrolny vypis
 }
+mysqli_close($link);
 ?>
-    <!-- div s mapou -->
-    <div id="mapaData" style="margin-left:2cm;
+  
+  <div id="mapaData" style="margin-left:2cm;
         height: 400px;
         width: 750px;
         border-collapse: collapse;
@@ -195,10 +118,8 @@ mysqli_free_result($result);
         border-color: #4d0000;
         border-radius: 10px;
         border-spacing: 2px;">
-    </div>
-    
-    <!-- js pre zobrazenie mapy-->
-    <script>
+  </div>
+  <script>
     var def = "<?php echo $def ?>";
     if (def == "skoly"){
 	    var pole = new Array();
@@ -236,7 +157,9 @@ mysqli_free_result($result);
             map: map,
             position: poz,
 	          title: contentString
-          });      
+          });
+
+        
 	      }
       }
     }
@@ -281,9 +204,11 @@ mysqli_free_result($result);
 	      }
       }
     }
+    
     </script>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNR8tp7L03rEX6lCXnoK6DrylRznvGYeY&callback=initMap">
-    </script>           
-    </body>
+
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNR8tp7L03rEX6lCXnoK6DrylRznvGYeY&callback=initMap">
+  </script>
+	</body>  
 </html>
