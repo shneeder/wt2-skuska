@@ -85,6 +85,8 @@
                 <div class="links">
                     <a href="https://elearn.elf.stuba.sk/moodle/pluginfile.php/57496/mod_resource/content/9/pokyny2018.pdf">Zadanie</a>
                     <a href="https://github.com/shneeder/wt2-skuska">GitHub</a>
+                    <a href="/wt2/zoznam.php">Trasy</a>
+                    <a href="/worktable">Rozdelenie uloh</a>
                 </div>
             </div>
         </div>
