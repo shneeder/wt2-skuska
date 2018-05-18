@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace WT2projekt\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        'WT2projekt\Model' => 'WT2projekt\Policies\ModelPolicy',
     ];
 
     /**
@@ -25,6 +25,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+
+        Gate::define('check-admin', function ($user) {
+            if ($user->isAdmin == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        });
     }
 }
