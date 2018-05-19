@@ -78,6 +78,7 @@
                     $prejdeneKM= $row["prejdeneKM"];
                 }
             }
+
 if ($prejdeneKM == null)
     $prejdeneKM=0;
 
@@ -127,6 +128,7 @@ if ($prejdeneKM == null)
 
     </div>
     <script src="script.js"></script>
+
 </div>
 </body>
 

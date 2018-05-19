@@ -71,6 +71,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     });
 }
 
+
 function vykresli(directionsService, directionsDisplay, response2) {
     var celkove =(response2.routes[0].legs[0].distance.value / 1000).toFixed(2);
     document.getElementById("celkoveKM").value = celkove;
@@ -117,6 +118,7 @@ if (km>0){
         origin: start,
         destination: cesta,
         travelMode: 'DRIVING',
+
     }, function (response, status) {
         if (status === 'OK') {
             //let distances = _.flatMap(response.routes, route => _.flatMap(route.legs, leg => leg.distance.value));
@@ -133,6 +135,7 @@ if (km>0){
         }
     });
 }
+
 }
 
 

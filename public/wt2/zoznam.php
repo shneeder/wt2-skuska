@@ -104,6 +104,7 @@
                 <option value="stafeta">stafeta</option>
             </select><br>
 
+
             <label for="gpsStartLat">gpsStartLat</label>
             <input id="gpsStartLat" type="text" name="gpsStartLat" value="0" ><br>
 

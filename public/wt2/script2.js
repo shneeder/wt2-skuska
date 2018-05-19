@@ -74,6 +74,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 function vykresli(directionsService, directionsDisplay, response2){
     document.getElementById("celkoveKM").value=response2.routes[0].legs[0].distance.value/1000;
     document.getElementById("ostavaKM").value=response2.routes[0].legs[0].distance.value/1000-km;
+
     if(km>0) {
 
         console.log(response2.routes[0]);
@@ -128,4 +129,5 @@ function vykresli(directionsService, directionsDisplay, response2){
             }
         });
     }
+
 }
