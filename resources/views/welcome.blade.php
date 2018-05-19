@@ -133,7 +133,7 @@ if (mysqli_num_rows($result) > 0 ){
       array_push($skola, $obj->lat);
       array_push($skola, $obj->lng);
 
-      $query1 = 'SELECT CONCAT(first_name, " ",last_name) as student FROM users WHERE school_name ="'.$obj->ssNazov.'"';
+      $query1 = 'SELECT CONCAT(first_name, " ",last_name) as student FROM users WHERE school_name ="'.$obj->adresa.'"';
       $result1 = mysqli_query($link, $query1);
       while($student = mysqli_fetch_object($result1)){
         array_push($skolaStudenti, $student->student);
