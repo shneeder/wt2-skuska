@@ -15,6 +15,7 @@
                                 </div>
                             @endif
                             ADMIN !!!, You are logged in!
+                            //<a href="wt2-skuska/public/bod11/admin.php">Nacitanie suboru + geocoding</a>
                         </div>
                     </div>
                 </div>
