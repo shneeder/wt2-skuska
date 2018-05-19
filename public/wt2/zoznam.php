@@ -104,17 +104,18 @@
                 <option value="stafeta">stafeta</option>
             </select><br>
 
-            <label for="gpsStartLng">gpsStartLng</label>
-            <input id="gpsStartLng" type="text" name="gpsStartLng" value="<?php echo htmlspecialchars($pom); ?>" ><br>
 
             <label for="gpsStartLat">gpsStartLat</label>
-            <input id="gpsStartLat" type="text" name="gpsStartLat" value="<?php echo htmlspecialchars($pom2); ?>" ><br>
+            <input id="gpsStartLat" type="text" name="gpsStartLat" value="0" ><br>
 
-            <label for="gpsCielLng">gpsCielLng</label>
-            <input id="gpsCielLng" type="text" name="gpsCielLng" value="0"><br>
+            <label for="gpsStartLng">gpsStartLng</label>
+            <input id="gpsStartLng" type="text" name="gpsStartLng" value="0" ><br>
 
             <label for="gpsCielLat">gpsCielLat</label>
             <input id="gpsCielLat" type="text" name="gpsCielLat" value="0"><br>
+
+            <label for="gpsCielLng">gpsCielLng</label>
+            <input id="gpsCielLng" type="text" name="gpsCielLng" value="0"><br>
 
             <input class="subm" type="submit" value="Submit" name="submit3">
 

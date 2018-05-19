@@ -63,7 +63,6 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
             //let distances = _.flatMap(response.routes, route => _.flatMap(route.legs, leg => leg.distance.value));
 
             // console.log(response.routes[0].overview_path);
-            if(km>0)
                 vykresli(directionsService, directionsDisplay, response)
 
         } else {
@@ -76,53 +75,59 @@ function vykresli(directionsService, directionsDisplay, response2){
     document.getElementById("celkoveKM").value=response2.routes[0].legs[0].distance.value/1000;
     document.getElementById("ostavaKM").value=response2.routes[0].legs[0].distance.value/1000-km;
 
-    console.log(response2.routes[0]);
+    if(km>0) {
 
-    console.log(response2.routes[0].legs[0].distance.value/1000);
-    console.log(response2.routes[0].legs[0].steps.length);
-    console.log(typeof km);
-    var pom=km*1000;
-    var pom2=0;
-    var cesta;
-    var dlzka =response2.routes[0].legs[0].steps.length;
-    for(var i=0; i<dlzka; i++) {
+        console.log(response2.routes[0]);
 
-        if (pom > pom2 && pom < response2.routes[0].legs[0].steps[i].distance.value + pom2) {
-            console.log("a" + i);
+        console.log(response2.routes[0].legs[0].distance.value / 1000);
+        console.log(response2.routes[0].legs[0].steps.length);
+        console.log(typeof km);
+        var pom = km * 1000;
+        var pom2 = 0;
+        var cesta;
+        var dlzka = response2.routes[0].legs[0].steps.length;
+        for (var i = 0; i < dlzka; i++) {
 
-            console.log(pom2);
-            var pom3 = pom - pom2;
-            var pom4 = Math.floor(pom3 / (response2.routes[0].legs[0].steps[i].distance.value / 100));
-            var path = (Math.floor(response2.routes[0].legs[0].steps[i].path.length / 100) + 1) * pom4;
-            console.log("treba prejst" + pom3);
+            if (pom > pom2 && pom < response2.routes[0].legs[0].steps[i].distance.value + pom2) {
+                console.log("a" + i);
 
-            console.log("pom4" + pom4);
-            console.log("path" + path);
-            console.log("asd" + response2.routes[0].legs[0].steps[i].path[path]);
-            cesta = response2.routes[0].legs[0].steps[i].path[path];
-            break;
+                console.log(pom2);
+                var pom3 = pom - pom2;
+                var pom4 = Math.floor(pom3 / (response2.routes[0].legs[0].steps[i].distance.value / 100));
+                var path = (Math.floor(response2.routes[0].legs[0].steps[i].path.length / 100) + 1) * pom4;
+
+                if(response2.routes[0].legs[0].distance.value/1000-km<0.2)
+                    path=Math.floor(response2.routes[0].legs[0].steps[dlzka-1].path.length)-1;
+                console.log("treba prejst" + pom3);
+
+                console.log("pom4" + pom4);
+                console.log("path" + path);
+                console.log("asd" + response2.routes[0].legs[0].steps[i].path[path]);
+                cesta = response2.routes[0].legs[0].steps[i].path[path];
+                break;
+            }
+            else
+                pom2 += response2.routes[0].legs[0].steps[i].distance.value;
         }
-        else
-            pom2 += response2.routes[0].legs[0].steps[i].distance.value;
+        directionsService.route({
+            origin: start,
+            destination: cesta,
+            travelMode: 'DRIVING',
+        }, function (response, status) {
+            if (status === 'OK') {
+                //let distances = _.flatMap(response.routes, route => _.flatMap(route.legs, leg => leg.distance.value));
+
+                // console.log(response.routes[0].overview_path);
+
+
+                //response.legs[0].distance.value=10000;
+                directionsDisplay.setDirections(response);
+                //vykresli2(directionsService, directionsDisplay, response2)
+
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
     }
-    directionsService.route({
-        origin: start,
-        destination: cesta,
-        travelMode: 'DRIVING',
-    }, function(response, status) {
-        if (status === 'OK') {
-            //let distances = _.flatMap(response.routes, route => _.flatMap(route.legs, leg => leg.distance.value));
-
-            // console.log(response.routes[0].overview_path);
-
-
-            //response.legs[0].distance.value=10000;
-            directionsDisplay.setDirections(response);
-            //vykresli2(directionsService, directionsDisplay, response2)
-
-        } else {
-            window.alert('Directions request failed due to ' + status);
-        }
-    });
 
 }

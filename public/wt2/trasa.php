@@ -79,6 +79,8 @@
                 }
             }
 
+if ($prejdeneKM == null)
+    $prejdeneKM=0;
 
             $sql = "SELECT * FROM training where user_id = '$userID' AND route_id =".intval($_POST['idcko'])."";
             $result = $conn->query($sql);
@@ -125,7 +127,8 @@
         </div>
 
     </div>
-    <script src="script2.js"></script>
+    <script src="script.js"></script>
+
 </div>
 </body>
 

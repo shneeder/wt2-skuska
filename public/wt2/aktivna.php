@@ -86,7 +86,8 @@
                     $prejdeneKM= $row["prejdeneKM"];
                 }
             }
-
+            if ($prejdeneKM == null)
+                $prejdeneKM=0;
 
             $sql = "SELECT * FROM training JOIN active ON training.user_id = active.id_user where training.user_id = '$userID' AND training.route_id ='$cesta'";
             $result = $conn->query($sql);

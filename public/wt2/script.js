@@ -34,11 +34,11 @@ function initMap() {
         center: start
     });
 
-   /* var marker1 = new google.maps.Marker({
+    var marker1 = new google.maps.Marker({
         position: start,
         map: map,
         title: 'Start'
-    });*/
+    });
     var marker2 = new google.maps.Marker({
         position: ciel,
         map: map,
@@ -71,28 +71,38 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     });
 }
 
-function vykresli(directionsService, directionsDisplay, response2){
-    document.getElementById("celkoveKM").value=response2.routes[0].legs[0].distance.value/1000;
-    document.getElementById("ostavaKM").value=response2.routes[0].legs[0].distance.value/1000-km;
 
+function vykresli(directionsService, directionsDisplay, response2) {
+    var celkove =(response2.routes[0].legs[0].distance.value / 1000).toFixed(2);
+    document.getElementById("celkoveKM").value = celkove;
+    document.getElementById("ostavaKM").value = (celkove - km).toFixed(2);
+if (km>0){
     console.log(response2.routes[0]);
 
-    console.log(response2.routes[0].legs[0].distance.value/1000);
-    console.log(response2.routes[0].legs[0].steps.length);
-    console.log(typeof km);
-    var pom=km*1000;
-    var pom2=0;
+    console.log(response2.routes[0].legs[0].distance.value / 1000);
+    km=parseFloat(km);
+    if (celkove - km==0)
+        km=km-0.01;
+    var pom = km  * 1000;
+    pom = parseFloat(pom);
+    var pom2 = 0;
     var cesta;
-    var dlzka =response2.routes[0].legs[0].steps.length;
-    for(var i=0; i<dlzka; i++) {
+    var dlzka = response2.routes[0].legs[0].steps.length;
+    for (var i = 0; i < dlzka; i++) {
 
         if (pom > pom2 && pom < response2.routes[0].legs[0].steps[i].distance.value + pom2) {
             console.log("a" + i);
-
+            console.log(pom);
             console.log(pom2);
+
+            console.log(response2.routes[0].legs[0].steps[i].distance.value + pom2);
             var pom3 = pom - pom2;
             var pom4 = Math.floor(pom3 / (response2.routes[0].legs[0].steps[i].distance.value / 100));
-            var path = (Math.floor(response2.routes[0].legs[0].steps[i].path.length / 100) + 1) * pom4;
+            var path = (Math.floor(response2.routes[0].legs[0].steps[i].path.length / 100) ) * pom4;
+            if(response2.routes[0].legs[0].distance.value/1000-km<0.2)
+                path=Math.floor(response2.routes[0].legs[0].steps[i].path.length)-1;
+            console.log(i);
+
             console.log("treba prejst" + pom3);
 
             console.log("pom4" + pom4);
@@ -108,7 +118,8 @@ function vykresli(directionsService, directionsDisplay, response2){
         origin: start,
         destination: cesta,
         travelMode: 'DRIVING',
-    }, function(response, status) {
+
+    }, function (response, status) {
         if (status === 'OK') {
             //let distances = _.flatMap(response.routes, route => _.flatMap(route.legs, leg => leg.distance.value));
 
@@ -123,6 +134,7 @@ function vykresli(directionsService, directionsDisplay, response2){
             window.alert('Directions request failed due to ' + status);
         }
     });
+}
 
 }
 
