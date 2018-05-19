@@ -17,14 +17,14 @@ $(document).ready(function(){
     $("#showSko").click(function(){
       $.ajax({
          success: function(){
-            window.location.href = 'http://147.175.98.234/?show=skoly';  
+            window.location.href = 'http://147.175.98.234/map?show=skoly';  
             }     
       }); 
     });
     $("#showByd").click(function(){
       $.ajax({
          success: function(){    
-            window.location.href = 'http://147.175.98.234/?show=bydliska';  
+            window.location.href = 'http://147.175.98.234/map?show=bydliska';  
             }     
       }); 
     });
