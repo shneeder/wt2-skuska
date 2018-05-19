@@ -19,10 +19,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/worktable', 'WorktableController@index');
-Route::get('/admin', function() {
+Route::get('/map', 'MapController@index');
+Route::get('/admin', 'AdminController@index');
+Route::get('/documentation', 'DocumentationController@index');
+/*Route::get('/admin', function() {
     if (Gate::allows('check-admin', Auth::user())) {
         return view('admin');
     } else {
         return 'Access denied!';
     }
 });
+*/

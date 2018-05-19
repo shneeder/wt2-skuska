@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h1>Rozdelenie uloh</h1>
+                <h1>Rozdelenie úloh</h1>
                 <table class="table">
                 <thead>
                   <tr>
