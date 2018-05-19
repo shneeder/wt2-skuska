@@ -51,7 +51,7 @@ function querySort ($x, $y) {
     return strcasecmp($x[5], $y[5]);
 }
 usort($data, 'querySort');
-print("<pre>".print_r($data,true)."</pre>");
+//print("<pre>".print_r($data,true)."</pre>");
 
 /* vkladanie do databazy*/
 
