@@ -119,8 +119,7 @@ if(isset($_GET['show'])){
 
 if($def == "skoly"){
 //zistenie poctu skol a ich adresy
-$query0 = 'SELECT CONCAT(first_name, " ",last_name) as student,
-      school_address as adresa, school_name as ssNazov, school_lat AS lat, school_lng AS lng
+$query0 = 'SELECT DISTINCT school_address as adresa, school_name as ssNazov, school_lat AS lat, school_lng AS lng
       FROM users ORDER BY school_address';
 $result = mysqli_query($link, $query0);
 if (mysqli_num_rows($result) > 0 ){
