@@ -24,35 +24,35 @@ $link = mysqli_connect($dbconfig['hostname'],$dbconfig['username'],$dbconfig['pa
 mysqli_set_charset($link,"utf8");
 
 
-/*   Nacitanie do poli pre spracovanie zemepisnych udajov    */ 
-$query1 = 'SELECT id, adress FROM school';
+/*   Nacitanie do poli pre spracovanie zemepisnych udajov    */
+$query1 = 'SELECT id, school_address FROM users';
 $result = mysqli_query($link, $query1);
 
 if (mysqli_num_rows($result) > 0 ){
   while ($obj = mysqli_fetch_object($result)){
-    if (strlen($obj->adress) < 5) {      
+    if (strlen($obj->school_address) < 5) {
       //nezadana adresa
       ;
     }
     else {
-  
+
       //prevod na url a zapisanie zemepusnych dat do databazy
-      $urlSkola = rawurlencode($obj->adress);
-      
+      $urlSkola = rawurlencode($obj->school_address);
+
       $url = 'https://maps.googleapis.com/maps/api/geocode/json?address='.$urlSkola.'&key=AIzaSyDNR8tp7L03rEX6lCXnoK6DrylRznvGYeY';
       $djson = file_get_contents($url);
       $data = (json_decode($djson));
-      if ($data->status != 'OK') echo '<p>Chyba pri geolokacii adresi '.$obj->adress.' </p>';
+      if ($data->status != 'OK') echo '<p>Chyba pri geolokacii adresy '.$obj->school_address.' </p>';
       else {
            //print("<pre>".print_r($data->results[0]->geometry->location,true)."</pre>");          //kontrolny vypis
-      
-           $query2  = 'UPDATE school SET latitude = '.$data->results[0]->geometry->location->lat.', 	longtitude= '.$data->results[0]->geometry->location->lng.' ';
+
+           $query2  = 'UPDATE users SET school_lat = '.$data->results[0]->geometry->location->lat.', 	school_lng = '.$data->results[0]->geometry->location->lng.' ';
            $query2 .= 'WHERE id = "'.$obj->id.'"';
            if(!mysqli_query($link, $query2)) echo '<p>Nastala chyba pri aktualizácii údajov zemepisnej polohy pre adresu '.$obj->ssAdresa.'</p>';
-      }      
+      }
     }
   }
-  mysqli_free_result($result);     
+  mysqli_free_result($result);
 }
 else echo '<p>Chyba pri načítaní údajov z databázy</p>';
 
@@ -61,33 +61,33 @@ $result = mysqli_query($link, $query1);
 
 if (mysqli_num_rows($result) > 0 ){
   while ($obj = mysqli_fetch_object($result)){
-    if (strlen($obj->obAdresa) < 5) {      
+    if (strlen($obj->obAdresa) < 5) {
       //nezadana adresa
       ;
     }
     else {
-  
+
       //prevod na url a zapisanie zemepusnych dat do databazy
       $urlObec = rawurlencode($obj->obAdresa);
-      
+
       $url = 'https://maps.googleapis.com/maps/api/geocode/json?address='.$urlObec.'&key=AIzaSyDNR8tp7L03rEX6lCXnoK6DrylRznvGYeY';
       $djson = file_get_contents($url);
       $data = (json_decode($djson));
       if ($data->status != 'OK') echo '<p>Chyba pri geolokacii adresi '.$obj->obAdresa.' </p>';
       else {
            //print("<pre>".print_r($data->results[0]->geometry->location,true)."</pre>");          //kontrolny vypis
-      
+
            $query2  = 'UPDATE users SET latitude = '.$data->results[0]->geometry->location->lat.', 	longtitude= '.$data->results[0]->geometry->location->lng.' ';
            $query2 .= 'WHERE email = "'.$obj->email.'"';
            if(!mysqli_query($link, $query2)) echo '<p>Nastala chyba pri aktualizácii údajov zemepisnej polohy pre adresu '.$obj->ssAdresa.'</p>';
-      }      
+      }
     }
   }
-  mysqli_free_result($result);     
+  mysqli_free_result($result);
 }
 else echo '<p>Chyba pri načítaní údajov z databázy</p>';
 mysqli_close($link);
 ?>
 
-	</body>  
+	</body>
 </html>

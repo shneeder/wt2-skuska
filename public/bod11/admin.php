@@ -7,7 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="clickHandler.js"></script>
   </head>
-  
+
 <?php
 
 /*  Nacitanie dat z excelu osoby2.csv po riadkoch */
@@ -35,7 +35,7 @@ if(isset($_FILES['excelFile']) && !empty($_FILES['excelFile']['tmp_name']) ){
 }
 //print("<pre>".print_r($riadky,true)."</pre>");
 
-/*    Spracovanie pola - rozlozenie jednotlivych stringov z $riadky na zaznamy, 
+/*    Spracovanie pola - rozlozenie jednotlivych stringov z $riadky na zaznamy,
       ulozenie zaznamov do noveho pola
 */
 
@@ -46,7 +46,7 @@ for ($i=0; $i<sizeof($riadky); $i++){
   array_push($data, $pieces);
 }
 
-//usporiadanie podla adries skol 
+//usporiadanie podla adries skol
 function querySort ($x, $y) {
     return strcasecmp($x[5], $y[5]);
 }
@@ -63,22 +63,27 @@ mysqli_set_charset($link,"utf8");
 if (!empty($data)){
   for($i=0; $i<sizeof($data); $i++){
     //kontrola ci je uz dana skola v databaze
-    $query1 = 'SELECT id, adress FROM school WHERE adress ="'.$data[$i][5].'"';
-    $result = mysqli_query($link, $query1);
+    //$query1 = 'SELECT id, adress FROM school WHERE adress ="'.$data[$i][5].'"';
+    //$result = mysqli_query($link, $query1);
     //ak adresa uz je v tabulke skol, pridat len data k user tabulke
-    if (mysqli_num_rows($result) > 0 ){
-      $obj = mysqli_fetch_object($result);
-      $heslo = strval(4242*$i);
-      $query2 =  'INSERT INTO users(name, email, password, first_name, last_name, school_id, street, postal_code, town)';
-      $query2 .= 'VALUES ("excel", "'.$data[$i][3].'", '.$heslo.', "'.$data[$i][2].'", "'.$data[$i][1].'", '.$obj->id.', "'.$data[$i][6].'", '.intval($data[$i][7]).', "'.$data[$i][8].'")';
+    //if (mysqli_num_rows($result) > 0 ){
+      //$obj = mysqli_fetch_object($result);
+      $heslo = strval(123456 + $i);
+      $hash_heslo = password_hash($heslo, PASSWORD_BCRYPT);
+      $query2 =  'INSERT INTO users(name, email, password, first_name, last_name, school_name, school_address, street, postal_code, town)';
+      $query2 .= 'VALUES ("excel", "'.$data[$i][3].'", "'.$hash_heslo.'", "'.$data[$i][2].'", "'
+      .$data[$i][1].'", "'.$data[$i][4].'", "'.$data[$i][5].'", "'.$data[$i][6].'", '.intval($data[$i][7]).', "'.$data[$i][8].'")';
+      echo "<h3>";
+      echo $query2;
+      echo "</h3>";
       //kontrola ci sa pridal zaznam do databazy, odoslanie heslo na dany mail
       if(!mysqli_query($link, $query2)) print("<pre>".print_r(mysqli_error($link),true)."</pre>");
       else {
         $msg = 'Úspešne ste boli zaregistrovaný na stránke http://147.175.98.234/  Vaše heslo je '.$heslo.'';
-        mail($data[$i][3],"WT2 - zaverecny projekt",$msg);
+        //mail($data[$i][3],"WT2 - zaverecny projekt",$msg);
       }
-    }
-    else {  // skola este nie je v databaze
+    //}
+    /*else {  // skola este nie je v databaze
       $query3 =  'INSERT INTO school(name, adress)';
       $query3 .= 'VALUES ("'.$data[$i][4].'", "'.$data[$i][5].'")';
       if(!mysqli_query($link, $query3)) print("<pre>".print_r(mysqli_error($link),true)."</pre>");
@@ -88,30 +93,31 @@ if (!empty($data)){
         $id = mysqli_fetch_object($result);
         $heslo = strval(4242*$i);
         $query2 =  'INSERT INTO users(name, email, password, first_name, last_name, school_id, street, postal_code, town)';
-        $query2 .= 'VALUES ("excel", "'.$data[$i][3].'", '.$heslo.', "'.$data[$i][2].'", "'.$data[$i][1].'", '.$id->id.', "'.$data[$i][6].'", '.intval($data[$i][7]).', "'.$data[$i][8].'")';
+        $query2 .= 'VALUES ("excel", "'.$data[$i][3].'", '.$heslo.', "'.$data[$i][2].'", "'
+        .$data[$i][1].'", '.$id->id.', "'.$data[$i][6].'", '.intval($data[$i][7]).', "'.$data[$i][8].'")';
         if(!mysqli_query($link, $query2)) print("<pre>".print_r(mysqli_error($link),true)."</pre>");
         else {
           $msg = 'Úspešne ste boli zaregistrovaný na stránke http://147.175.98.234/  Vaše heslo je '.$heslo.'';
           mail($data[$i][3],"WT2 - zaverecny projekt",$msg);
         }
       }
-    }
-    
+    }*/
+
   }
-} 
+}
 mysqli_close($link);
 ?>
-  
+
 	<body>
     <form action ="" method="POST" enctype="multipart/form-data">
       <input type="file" name="excelFile">
-      <input type="submit" value="Potvrď">    
+      <input type="submit" value="Potvrď">
     </form>
     <p>Načítanie adries zo súboru. Testované je načítanie z .txt súboru, keďže s excelom je problém pri utf-8.
        Čiže obsah osoby2.csv bol prekopírovaný do napr. osoby2.txt a načítaný bol potom tento .txt súbor.
     </p>
-  
-  
+
+
     <br>
     <button id="startGeocode"> Geocode </button>
     <p>Tlačidlo pre priradenie zemepisnej šírky a dĺžky jednotlivým adresám v databáze.
@@ -120,5 +126,5 @@ mysqli_close($link);
     Kebyže sme api implementovali na hlavnej stránke, tak už len pre dáta z excelu je potrebné volať api cca 100 krát, takže to musí robiť len admin.)
     </p>
 
-	</body>  
+	</body>
 </html>
