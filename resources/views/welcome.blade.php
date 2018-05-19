@@ -132,15 +132,14 @@ if (mysqli_num_rows($result) > 0 ){
       array_push($skola, $obj->ssNazov);
       array_push($skola, $obj->lat);
       array_push($skola, $obj->lng);
-      array_push($skola, $obj->student);
 
-      /*$query1 = 'SELECT CONCAT(first_name, " ",last_name) as student FROM users WHERE school_id ="'.$obj->id.'"';
+      $query1 = 'SELECT CONCAT(first_name, " ",last_name) as student FROM users WHERE school_name ="'.$obj->ssNazov.'"';
       $result1 = mysqli_query($link, $query1);
       while($student = mysqli_fetch_object($result1)){
         array_push($skolaStudenti, $student->student);
       }
       mysqli_free_result($result1);
-      array_push($skola, $skolaStudenti);*/
+      array_push($skola, $skolaStudenti);
       //pridanie do vysledneho pola a resetovanie pola $skola
       array_push($poleSkoly, $skola);
       unset($skolaStudenti);
