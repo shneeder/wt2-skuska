@@ -121,12 +121,12 @@
                     <td></td>
                     <td></td>
                   </tr>
-                  <tr>
+                  <tr class="text-white bg-dark">
                     <th scope="row">13</th>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td class="text-center">&#10004;</td>
+                    <td class="text-center"></td>
                     <td></td>
                   </tr>
                   <tr>
