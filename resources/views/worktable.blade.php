@@ -3,8 +3,8 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <h1>Rozdelenie uloh</h1>
+            <div class="col-md-10">
+                <h1>Rozdelenie úloh</h1>
                 <table class="table">
                 <thead>
                   <tr>
@@ -121,12 +121,12 @@
                     <td></td>
                     <td></td>
                   </tr>
-                  <tr>
+                  <tr class="text-white bg-dark">
                     <th scope="row">13</th>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td class="text-center">&#10004;</td>
+                    <td class="text-center"></td>
                     <td></td>
                   </tr>
                   <tr>

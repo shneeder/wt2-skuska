@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
         'guest' => \WT2projekt\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'is_admin' => \WT2projekt\Http\Middleware\IsAdmin::class,
     ];
 }

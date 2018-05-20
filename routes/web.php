@@ -18,11 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/active', 'ActiveController@index');
+Route::get('/home/route', 'RouteController@index');
 Route::get('/worktable', 'WorktableController@index');
-Route::get('/admin', function() {
-    if (Gate::allows('check-admin', Auth::user())) {
-        return view('admin');
-    } else {
-        return 'Access denied!';
-    }
-});
+Route::get('/map', 'MapController@index');
+Route::get('/admin', 'AdminController@index')->middleware('is_admin')->name('admin');
+Route::get('/documentation', 'DocumentationController@index');
+
