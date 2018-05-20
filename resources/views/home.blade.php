@@ -129,7 +129,7 @@
 
                                         <label for="gpsCielLng">gpsCielLng</label>
                                         <input id="gpsCielLng" type="text" name="gpsCielLng" value="0"><br>
-
+                                        <input id="user_id" name="user_id" value="{{session('user_id')}}" hidden>
                                         <input class="subm" type="submit" value="Submit" name="submit3">
 
                                     </form>

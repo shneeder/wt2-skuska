@@ -4,7 +4,7 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 
 if( isset($_POST['submit3']))
 {
-    $userID=1;
+    $userID=$_POST['user_id'];
 
     $sql = "INSERT INTO route (startLng, startLat, finistLng, finistLat, typ, id_user)
 VALUES ('".$_POST['gpsStartLng']."','".$_POST['gpsStartLat']."','".$_POST['gpsCielLng']."','".$_POST['gpsCielLat']."','".$_POST['mod']."','".$userID."')";
