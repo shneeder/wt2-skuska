@@ -32,6 +32,47 @@
 
 </head>
 <body>
+<script>
+
+    function sendTestDataUpdate() {
+        var form = $('#add-test');
+        form.submit(function (event) {
+            event.preventDefault()
+        });http://127.0.0.1:8000/home/wt2/test.php
+        var name0 = form.serializeArray()[0].name;
+        var name1 = form.serializeArray()[1].name;
+        var name2 = form.serializeArray()[2].name;
+        var name3 = form.serializeArray()[3].name;
+        var name4 = form.serializeArray()[4].name;
+        var name5 = form.serializeArray()[5].name;
+        var name6 = form.serializeArray()[6].name;
+        var name7 = form.serializeArray()[7].name;
+        var name8 = form.serializeArray()[8].name;
+        var name9 = form.serializeArray()[9].name;
+        var name9 = form.serializeArray()[9].name;
+        // Submit the form using AJAX.
+        $.post("../wt2/test.php",
+            {
+                name0: form.serializeArray()[0].value,
+                name1: form.serializeArray()[1].value,
+                name2: form.serializeArray()[2].value,
+                name3: form.serializeArray()[3].value,
+                name4: form.serializeArray()[4].value,
+                name5: form.serializeArray()[5].value,
+                name6: form.serializeArray()[6].value,
+                name7: form.serializeArray()[7].value,
+                name8: form.serializeArray()[8].value,
+                name9: form.serializeArray()[9].value,
+                "user_id_test": document.getElementById('user_id').value
+            },
+            function (data) {
+                alert(data);
+            }).fail(function (err) {
+            console.log(err);
+            alert("Error occured!");
+        });
+    }
+</script>
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
@@ -210,7 +251,7 @@
 
                                     <div class="col-md-6">
 
-                                        <form action="test.php" method="post">
+                                        <form id="add-test" onsubmit="sendTestDataUpdate(); return false;">
                                             <h1>Pridaj trening</h1>
                                             <label for="km">KM</label>
                                             <span class="red" >*</span>
@@ -247,7 +288,7 @@
 
                                             <label for="poznamka">poznamka</label>
                                             <textarea id="poznamka" name="poznamka" ></textarea><br>
-
+                                            <input id="user_id" name="user_id_test" value="{{session('user_id')}}" hidden>
                                             <input id="submit" class="subm" type="submit" value="Submit" onclick="kontrola()" name="submit" >
                                         </form>
                                     </div>
