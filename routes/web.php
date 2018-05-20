@@ -18,8 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home/active', 'ActiveController@index');
-Route::get('/home/route', 'RouteController@index');
+Route::get('/home/active', 'ActiveController@index')->middleware('auth');
+Route::get('/home/route', 'RouteController@index')->middleware('auth');
 Route::get('/worktable', 'WorktableController@index');
 Route::get('/map', 'MapController@index');
 Route::get('/admin', 'AdminController@index')->middleware('is_admin')->name('admin');

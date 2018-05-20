@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <p class="col-md-10">
                 <h1>Rozdelenie úloh</h1>
                 <table class="table">
                 <thead>
@@ -97,13 +97,13 @@
                     <td></td>
                     <td class="text-center">&#10004;</td>
                   </tr>
-                  <tr>
+                  <tr class="text-white bg-dark">
                     <th scope="row">10</th>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td class="text-center">&#10004;</td>
+                    <td></td>
                   </tr>
                   <tr>
                     <th scope="row">11</th>
@@ -137,8 +137,26 @@
                     <td></td>
                     <td></td>
                   </tr>
+                  <tr>
+                    <th scope="row">Rozloženie a štruktúra stránky</th>
+                    <td class="text-center"></td>
+                    <td class="text-center">&#10004;</td>
+                    <td class="text-center"></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
                 </tbody>
               </table>
+              <p>
+                Pri dávaní zdrojových kódov od rôznych členov tímu mohlo dôjsť k ich znefunčneniu,
+                preto tu aj uvádzam pôvodné súbory od jednotlivých ľudí:
+                <ul>
+            <li><strong>Marek Schmidt</strong>: celý adresár /public/wt2</li>
+            <li><strong>Kamil Bator</strong>: celý adresár /public/bod11</li>
+            <li><strong>Miroslav Kubus</strong>:  /public/infoTrening.php</li>
+            <li><strong>Lukas Snider</strong>: kostra projektu</li>
+                </ul>
+              </p>
             </div>
         </div>
     </div>

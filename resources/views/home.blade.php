@@ -2,6 +2,32 @@
 
 @section('content')
 
+    <script>
+
+        function sendFormDataUpdate() {
+            var form = $('#add-route');
+            form.submit(function (event) {
+                event.preventDefault()
+            });
+            // Submit the form using AJAX.
+            $.post("wt2/pridaj.php",
+                {
+                    "mod": form.serializeArray()[0].value,
+                    "gpsStartLat": form.serializeArray()[1].value,
+                    "gpsStartLng": form.serializeArray()[2].value,
+                    "gpsCielLat": form.serializeArray()[3].value,
+                    "gpsCielLng": form.serializeArray()[4].value,
+                    "user_id": form.serializeArray()[5].value,
+                    "submit3": "Submit"
+                },
+                function (data) {
+                    alert(data);
+                }).fail(function (err) {
+                console.log(err);
+                alert("Error occured!");
+            });
+        }
+    </script>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">
@@ -9,10 +35,13 @@
                     @if (Auth::user()->isAdmin == 1)
                         <div class="card-header">ADMINISTRÁTORSKÝ ÚČET <br>
                             <a href="/admin">Správa používateľkých účtov</a><hr>
-                        <a href="/home/active">Aktuálne aktívny tréning</a></div>
+                        <a href="/home/active">Aktuálne aktívny tréning</a><hr>
+                            <a href="infoTrening.php?id={{Auth::user()->id}}">Tabuľka tréningov používateľov</a></div>
                     @else
                         <div class="card-header">Zoznam tréningov<hr>
-                        <a href="/home/active">Aktuálne aktívny tréning</a></div>
+                        <a href="/home/active">Aktuálne aktívny tréning</a><hr>
+                            <a href="infoTrening.php?id={{Auth::user()->id}}">Tabuľka výkonov na tréningu</a>
+                        </div>
                     @endif
                     <div class="card-body">
                         @if (session('status'))
@@ -108,7 +137,7 @@
 
                                 <div class="row">
 
-                                    <form action="wt2/pridaj.php" method="post">
+                                    <form id="add-route" onsubmit="sendFormDataUpdate(); return false;">
                                         <h1>Pridaj novu trasu</h1>
                                         <label>Mod</label>
                                         <select id="mod" name="mod">

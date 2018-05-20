@@ -67,12 +67,6 @@
 
                                 if (!empty($data)){
                                 for($i=0; $i<sizeof($data); $i++){
-                                //kontrola ci je uz dana skola v databaze
-                                //$query1 = 'SELECT id, adress FROM school WHERE adress ="'.$data[$i][5].'"';
-                                //$result = mysqli_query($link, $query1);
-                                //ak adresa uz je v tabulke skol, pridat len data k user tabulke
-                                //if (mysqli_num_rows($result) > 0 ){
-                                //$obj = mysqli_fetch_object($result);
                                 $heslo = strval(123456 + $i);
                                 $hash_heslo = password_hash($heslo, PASSWORD_BCRYPT);
                                 $query2 =  'INSERT INTO users(name, email, password, first_name, last_name, school_name, school_address, street, postal_code, town)';
@@ -84,26 +78,6 @@
                                 $msg = 'Úspešne ste boli zaregistrovaný na stránke http://147.175.98.234/  Vaše heslo je '.$heslo.'';
                                 //mail($data[$i][3],"WT2 - zaverecny projekt",$msg);
                                 }
-                                //}
-                                /*else {  // skola este nie je v databaze
-                                $query3 =  'INSERT INTO school(name, adress)';
-                                $query3 .= 'VALUES ("'.$data[$i][4].'", "'.$data[$i][5].'")';
-                                if(!mysqli_query($link, $query3)) print("<pre>".print_r(mysqli_error($link),true)."</pre>");
-                                else {
-                                $query4 =  'SELECT id as id FROM school WHERE adress = "'.$data[$i][5].'"';
-                                $result4 = mysqli_query($link, $query4);
-                                $id = mysqli_fetch_object($result);
-                                $heslo = strval(4242*$i);
-                                $query2 =  'INSERT INTO users(name, email, password, first_name, last_name, school_id, street, postal_code, town)';
-                                $query2 .= 'VALUES ("excel", "'.$data[$i][3].'", '.$heslo.', "'.$data[$i][2].'", "'
-                                .$data[$i][1].'", '.$id->id.', "'.$data[$i][6].'", '.intval($data[$i][7]).', "'.$data[$i][8].'")';
-                                if(!mysqli_query($link, $query2)) print("<pre>".print_r(mysqli_error($link),true)."</pre>");
-                                else {
-                                $msg = 'Úspešne ste boli zaregistrovaný na stránke http://147.175.98.234/  Vaše heslo je '.$heslo.'';
-                                mail($data[$i][3],"WT2 - zaverecny projekt",$msg);
-                                }
-                                }
-                                }*/
 
                                 }
                                 }

@@ -54,7 +54,7 @@
             $pLat=0;
             $kLng=0;
             $kLat=0;
-
+            $cesta=0;
 
             $sql = "SELECT * FROM route JOIN active ON active.is_route=route.id  where active.id_user = '$userID'";
             $result = $conn->query($sql);
