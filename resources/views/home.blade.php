@@ -9,10 +9,12 @@
                     @if (Auth::user()->isAdmin == 1)
                         <div class="card-header">ADMINISTRÁTORSKÝ ÚČET <br>
                             <a href="/admin">Správa používateľkých účtov</a><hr>
-                        <a href="/home/active">Aktuálne aktívny tréning</a></div>
+                        <a href="/home/active">Aktuálne aktívny tréning</a><hr>
+                            <a href="/adminnews">Zadávanie aktualít</a></div>
                     @else
                         <div class="card-header">Zoznam tréningov<hr>
-                        <a href="/home/active">Aktuálne aktívny tréning</a></div>
+                        <a href="/home/active">Aktuálne aktívny tréning</a><hr>
+                            <a href="/newsletter">Aktuality</a></div>
                     @endif
                     <div class="card-body">
                         @if (session('status'))
