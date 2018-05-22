@@ -24,4 +24,8 @@ Route::get('/worktable', 'WorktableController@index');
 Route::get('/map', 'MapController@index');
 Route::get('/admin', 'AdminController@index')->middleware('is_admin')->name('admin');
 Route::get('/documentation', 'DocumentationController@index');
-
+Route::get('/newsletter', 'NewsletterController@index');
+Route::post('/subscribe', 'NewsletterController@store');
+Route::post('/unsubscribe', 'NewsletterController@unstore');
+Route::get('/adminnews', 'CampaignController@index')->middleware('is_admin');
+Route::get('/training/{userID}', 'TrainingController@index');

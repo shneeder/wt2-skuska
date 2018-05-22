@@ -79,7 +79,7 @@
                 <div class="links">
                     <a href="https://elearn.elf.stuba.sk/moodle/pluginfile.php/57496/mod_resource/content/9/pokyny2018.pdf">Zadanie</a>
                     <a href="/map">Mapa používateľov</a>
-                    <a href="/documentation">Tecnnická dokumentácia</a>
+                    <a href="/documentation">Technická dokumentácia</a>
                     <a href="/worktable">Rozdelenie uloh</a>
                 </div>
             </div>
