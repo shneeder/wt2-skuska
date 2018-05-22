@@ -24,34 +24,37 @@ class AdminController extends Controller
 
     public function index()
     {
-        /*$conn = $this->connect_to_db(env('DB_HOST', '127.0.0.1'), env('DB_USERNAME', 'root'),
+        $conn = $this->connect_to_db(env('DB_HOST', '127.0.0.1'), env('DB_USERNAME', 'root'),
             env('DB_PASSWORD', ''), env('DB_DATABASE', 'forge'));
 
-        $newsResult = array(
-            'title' => array(),
-            'content' => array()
-        );
+        $newsResult = array();
 
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT title, content FROM news";
+        $sql = "SELECT name, email, first_name, last_name, street, postal_code, town, school_name  FROM users";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                array_push($newsResult['title'], $row['title']);
-                array_push($newsResult['content'], $row['content']);
+                array_push($newsResult, [
+                    "name" => $row['name'],
+                    "email" => $row['email'],
+                    "first_name" => $row['first_name'],
+                    "last_name" => $row['last_name'],
+                    "street" => $row['street'],
+                    "postal_code" => $row['postal_code'],
+                    "town" => $row['town'],
+                    "school_name" => $row['school_name']
+                ]);
             }
         } else {
             echo "0 results";
         }
 
-        //    return $newsResult;
-        //}
 
-        return view('admin', ["news" => $newsResult]);*/
-        return view('admin' );
+        return view('admin', ["users" => $newsResult]);
+       // return view('admin' );
     }
 }

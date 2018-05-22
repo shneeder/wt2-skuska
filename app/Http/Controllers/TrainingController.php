@@ -70,7 +70,10 @@ class TrainingController extends Controller
         } else {
             echo "0 results";
         }
-        $avg_km = $acc / $result->num_rows;
+        if($result->num_rows > 0)
+            $avg_km = $acc / $result->num_rows;
+        else
+            $avg_km = 0;
         return view('training', ["data" => $newsResult, "avg_km" => $avg_km]);
     }
 

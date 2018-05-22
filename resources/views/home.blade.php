@@ -128,15 +128,71 @@
                                         });
 
                                         function myFunction(id_u,id){
-                                            var url = '<?php echo $_SERVER["DOCUMENT_ROOT"]."/wt2/zmen.php"; ?>';
-                                            $.post(url, {user:id_u, cesta:id})
+                                            var url = "wt2/zmen.php";
+                                            $.post(url, {user:id_u, cesta:id}).success(function (data) {
+                                                alert(data);
+                                            })
                                         }
 
                                     </script>
                                 </div>
 
-
                                 <div class="row">
+
+                                    <form  >
+                                        <h1>Pridaj novu trasu</h1>
+                                        <label>Mod</label>
+                                        <select id="mod" name="mod">
+                                            <option value="private">private</option>
+                                            <option value="public">public</option>
+                                            <option value="stafeta">stafeta</option>
+                                        </select><br>
+
+                                        <label for="gpsStartLat">gpsStartLat</label>
+                                        <input id="gpsStartLat" type="text" name="gpsStartLat" value="0" ><br>
+
+                                        <label for="gpsStartLng">gpsStartLng</label>
+                                        <input id="gpsStartLng" type="text" name="gpsStartLng" value="0" ><br>
+
+                                        <label for="gpsCielLat">gpsCielLat</label>
+                                        <input id="gpsCielLat" type="text" name="gpsCielLat" value="0"><br>
+
+                                        <label for="gpsCielLng">gpsCielLng</label>
+                                        <input id="gpsCielLng" type="text" name="gpsCielLng" value="0"><br>
+                                        <input id="user_id" name="user_id" value="{{session('user_id')}}" hidden>
+                                        <button type="button" id="odosli" onclick="insertData()">Click Me!</button>
+
+                                    </form>
+                                </div>
+
+
+                                <script type="text/javascript">
+
+                                    function insertData() {
+                                        var q2=$("#gpsStartLat").val();
+                                        var q1=$("#gpsStartLng").val();
+                                        var q4=$("#gpsCielLat").val();
+                                        var q3=$("#gpsCielLng").val();
+                                        var q5=$("#mod").val();
+// AJAX code to send data to php file.
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "wt2/pridaj.php",
+                                            data: {q1:q1,q2:q2,q3:q3,q4:q4,q5:q5,
+                                                user_id: $('#user_id').val()
+                                            },
+                                            success: function(data) {
+                                                console.log(data);
+                                                $("#zoznam").append(data);
+                                            },
+                                            error: function(err,data) {
+                                                alert(err);
+                                            }
+                                        });
+                                    }
+
+                                </script>
+                                <!--<div class="row">
 
                                     <form id="add-route" onsubmit="sendFormDataUpdate(); return false;">
                                         <h1>Pridaj novu trasu</h1>
@@ -163,7 +219,7 @@
                                         <input class="subm" type="submit" value="Submit" name="submit3">
 
                                     </form>
-                                </div>
+                                </div>-->
                                 <?php
                                 if($rola==1){
                                     echo"<div class='row'>";

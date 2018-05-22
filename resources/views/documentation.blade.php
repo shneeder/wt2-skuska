@@ -5,12 +5,12 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">Technická dokumentácia</div>
+                    <div class="card-header"><h1>Technická dokumentácia</h1></div>
 
                     <div class="card-body">
                         <a href="https://github.com/shneeder/wt2-skuska">GitHub</a><hr>
                         <h4>Prístupné podstránky</h4>
-                        <img src="app_diagram.png" alt="Diagram stránky" height="450">
+                        <img src="app_diagram.png" alt="Diagram stránky" height="500">
                         <br><hr>
                         <h4>/welcome</h4>
                         <p>Úvodná stránka s tromi linkami pre anonymných pouťívateľov:
@@ -55,6 +55,9 @@
                         </p>
                         <h4>/admin</h4>
                         <p>
+                            Tabuľka registrovaných používateľov.
+                        </p>
+                        <p>
                             Načítanie súboru vo formáte CSV - je potrebné vybrať súbor a následne aj potvrdiť<br>
                             Geocoding <ul> <li> služba pre admina</li>
                             <li> denný limit má 2500 volaní, takže som túto starosť nechal pre administrátora</li>
@@ -68,20 +71,17 @@
                             </li>
                         </ul>
                         </p>
-                        <h4>/admin</h4>
+                        <h4>/newsletter</h4>
                         <p>
-                            Načítanie súboru vo formáte CSV - je potrebné vybrať súbor a následne aj potvrdiť<br>
-                            Geocoding <ul> <li> služba pre admina</li>
-                            <li> denný limit má 2500 volaní, takže som túto starosť nechal pre administrátora</li>
-
-                            <li> pre každú unikátnu adresu školy a obydlia v tabuľke users sa zavolá geocoding,
-                            napr.  $url = 'https://maps.googleapis.com/maps/api/geocode/json?address='.$urlSkola.'&key=AIzaSyDNR8tp7L03rEX6lCXnoK6DrylRznvGYeY';
-                            kde $urlSkola je daná adresa školy z databáze spracovaná funkciou rawurlencode(adresaSkoly);
-                            </li>
-                            <li> po samotnom stisnutí tlačidla pre geocoding treba čakať na všetky volania geocoding api
-                            a aktualizáciu databázy o zemepisné údaje k danej adrese
-                            </li>
-                        </ul>
+                            Prihlasovanie sa do newslettera, možnosť prehliadať aktuality.
+                        </p>
+                        <h4>/adminnews</h4>
+                        <p>
+                            Pridávanie aktualík a rozposielanie newslettra.
+                        </p>
+                        <h4>/training/{userID}</h4>
+                        <p>
+                            Podrobnosti o tréningu prihláseného používateľa
                         </p>
                     </div>
                 </div>

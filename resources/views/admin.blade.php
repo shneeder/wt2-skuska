@@ -6,7 +6,6 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header"><h1>Administrácia používateľov</h1></div>
-                        <h3>Načítanie používateľov z CSV súboru</h3>
                         <div class="card-body">
                             @if (session('status'))
                                 <div class="alert alert-success">
@@ -14,6 +13,41 @@
                                 </div>
                             @endif
 
+                                <h3>Používatelia</h3>
+
+                                <table id="myTable">
+                                    <thead>
+                                    <tr>
+                                        <th onclick="sortTable(0, this)" class='sortingHeader'>Používateľské meno</th>
+                                        <th onclick="sortTable(1, this)" class='sortingHeader'>Email</th>
+                                        <th onclick="sortTable(2, this)" class='sortingHeader'>Krstné meno</th>
+                                        <th onclick="sortTable(3, this)" class='sortingHeader'>Priezvisko</th>
+                                        <th onclick="sortTable(4, this)" class='sortingHeader'>Ulica</th>
+                                        <th onclick="sortTable(5, this)" class='sortingHeader'>PSČ</th>
+                                        <th onclick="sortTable(6, this)" class='sortingHeader'>Mesto</th>
+                                        <th onclick="sortTable(7, this)" class='sortingHeader'>Škola</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach ($users as $row)
+                                        <tr class='firstLevelSort'>
+                                            <td>{{ $row["name"] }}</td>
+                                            <td>{{ $row["email"] }}</td>
+                                            <td>{{ $row["first_name"] }}</td>
+                                            <td>{{ $row["last_name"]}}</td>
+                                            <td>{{ $row["street"]}}</td>
+                                            <td>{{ $row["postal_code"] }}</td>
+                                            <td>{{ $row["town"] }}</td>
+                                            <td>{{ $row["school_name"] }}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+
+
+                                <br><br><hr><br>
+                                <h3>Načítanie používateľov z CSV súboru</h3>
+                                <br><br><hr><br>
                                 <?php
                                 /*  Nacitanie dat z excelu osoby2.csv po riadkoch */
                                 $riadky = array();

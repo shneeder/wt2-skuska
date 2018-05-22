@@ -10,23 +10,27 @@ $sql = "SELECT * FROM active where id_user='$user'";
 $result = $conn->query($sql);
 
 
-$sql = "UPDATE active SET is_route='".$cesta."'WHERE id_user= '$user'";
 
 
 if ($result->num_rows == 0) {
     // output data of each row
-    $sql = "INSERT INTO active (is_route, id_user)  VALUES ('".$cesta."','$user')";
+    $sql2 = "INSERT INTO active (is_route, id_user)  VALUES ('".intval($cesta)."','".intval($user)."')";
 
 }
+else
+    $sql2 = "UPDATE active SET is_route='".intval($cesta)."'WHERE id_user= '$user'";
 
+echo $sql2;
 
-if ($conn->query($sql) === TRUE) {
+if ($conn->query($sql2) === TRUE) {
+    //header("Location: /home/active");
+    echo "Update bol vykonany!";
+
 } else {
     echo "Error updating record: " . $conn->error;
 }
 
 $conn->close();
-//header("Location: zoznam.php");
 
 
 ?>

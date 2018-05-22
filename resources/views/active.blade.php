@@ -10,13 +10,14 @@
 
     <title>WT 2 - projekt</title>
 
-<!--<script src="{{ asset('js/app.js') }}"></script>-->
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="{{ asset('bod11/clickHandler.js') }}"></script>
+    <script src="{{ asset('wt2/script.js') }}"></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
@@ -38,7 +39,7 @@
         var form = $('#add-test');
         form.submit(function (event) {
             event.preventDefault()
-        });http://127.0.0.1:8000/home/wt2/test.php
+        });
         var name0 = form.serializeArray()[0].name;
         var name1 = form.serializeArray()[1].name;
         var name2 = form.serializeArray()[2].name;
@@ -49,21 +50,20 @@
         var name7 = form.serializeArray()[7].name;
         var name8 = form.serializeArray()[8].name;
         var name9 = form.serializeArray()[9].name;
-        var name9 = form.serializeArray()[9].name;
         // Submit the form using AJAX.
-        $.post("../wt2/test.php",
+        $.post("wt2/test.php",
             {
-                name0: form.serializeArray()[0].value,
-                name1: form.serializeArray()[1].value,
-                name2: form.serializeArray()[2].value,
-                name3: form.serializeArray()[3].value,
-                name4: form.serializeArray()[4].value,
-                name5: form.serializeArray()[5].value,
-                name6: form.serializeArray()[6].value,
-                name7: form.serializeArray()[7].value,
-                name8: form.serializeArray()[8].value,
-                name9: form.serializeArray()[9].value,
-                "user_id_test": document.getElementById('user_id').value
+                km: parseInt(form.serializeArray()[0].value),
+                datum: document.getElementById('datum').value,
+                casZaciatok: document.getElementById('casZaciatok').value,
+                casKoniec: document.getElementById('casKoniec').value,
+                gpsStartLat: document.getElementById('gpsStartLat').value,
+                gpsStartLng: document.getElementById('gpsStartLng').value,
+                gpsCielLat: document.getElementById('gpsCielLat').value,
+                gpsCielLng: document.getElementById('gpsCielLng').value,
+                evaluation: document.getElementById('evaluation').value,
+                poznamka: document.getElementById('poznamka').value,
+                user_id_test: document.getElementById('user_id').value
             },
             function (data) {
                 alert(data);
@@ -251,7 +251,7 @@
 
                                     <div class="col-md-6">
 
-                                        <form id="add-test" onsubmit="sendTestDataUpdate(); return false;">
+                                        <form id="add-test" action="../wt2/test.php" method="post">
                                             <h1>Pridaj trening</h1>
                                             <label for="km">KM</label>
                                             <span class="red" >*</span>

@@ -2,9 +2,14 @@
 include_once 'config.php';
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-if( isset($_POST['user_id_test']))
+echo "fasdfasd ahoj";
+echo $_REQUEST['user_id_test'];
+echo $_REQUEST['submit'];
+echo $_REQUEST['km'];
+
+if( isset($_REQUEST['submit']))
 {
-    $userID=$_POST['user_id_test'];
+    $userID=$_REQUEST['user_id_test'];
     $cesta=0;
     $sql = "SELECT * FROM active where id_user = '$userID'";
     $result = $conn->query($sql);
@@ -15,8 +20,8 @@ if( isset($_POST['user_id_test']))
         }
     }
     $sql = "INSERT INTO training (already_run_km, datum, exact_time, finish_time, user_id, route_id, evaluation, note, gpsStartLng,gpsStartLat,gpsCielLng,gpsCielLat)
-VALUES ('".$_POST['km']."','".$_POST['datum']."','".$_POST['casZaciatok']."','".$_POST['casKoniec']."','".$userID."','".$cesta."','".$_POST['evaluation']."','".$_POST['poznamka']."',
-'".$_POST['gpsStartLng']."','".$_POST['gpsStartLat']."','".$_POST['gpsCielLng']."','".$_POST['gpsCielLat']."')";
+VALUES ('".$_REQUEST['km']."','".$_REQUEST['datum']."','".$_REQUEST['casZaciatok']."','".$_REQUEST['casKoniec']."','".$userID."','".$cesta."','".$_REQUEST['evaluation']."','".$_REQUEST['poznamka']."',
+'".$_REQUEST['gpsStartLng']."','".$_REQUEST['gpsStartLat']."','".$_REQUEST['gpsCielLng']."','".$_REQUEST['gpsCielLat']."')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Bol pridanný nový tréning.";
@@ -29,8 +34,10 @@ VALUES ('".$_POST['km']."','".$_POST['datum']."','".$_POST['casZaciatok']."','".
     //echo "<script>definuj()</script>";
 
 
-    //header("Location: aktivna.php");
+    header("Location: /home/active");
 
+} else {
+    echo "Nedostali sme sa kam sme sa dostat mali...";
 }
 
 

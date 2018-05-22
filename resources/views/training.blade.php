@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">Prehľad osobných výkonov</div>
+                    <div class="card-header"><h1>Prehľad osobných výkonov</h1></div>
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success">
