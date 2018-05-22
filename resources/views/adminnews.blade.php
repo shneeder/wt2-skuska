@@ -41,7 +41,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">Vytváranie aktualít</div>
+                    <div class="card-header"><h1>Vytváranie aktualít</h1></div>
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success">
@@ -50,7 +50,7 @@
                         @endif
 
 
-                            <h2 class="text-center">Administrátorská správa aktualít</h2>
+                            <h3 class="text-center">Administrátorská správa aktualít</h3>
                             <div class="container">
 
                                 @if ($message = Session::get('success'))

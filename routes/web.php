@@ -28,4 +28,4 @@ Route::get('/newsletter', 'NewsletterController@index');
 Route::post('/subscribe', 'NewsletterController@store');
 Route::post('/unsubscribe', 'NewsletterController@unstore');
 Route::get('/adminnews', 'CampaignController@index')->middleware('is_admin');
-
+Route::get('/training/{userID}', 'TrainingController@index');

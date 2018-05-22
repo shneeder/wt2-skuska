@@ -7,14 +7,16 @@
             <div class="col-md-10">
                 <div class="card">
                     @if (Auth::user()->isAdmin == 1)
-                        <div class="card-header">ADMINISTRÁTORSKÝ ÚČET <br>
+                        <div class="card-header"><h1>Administrátorský účet</h1> <br><hr>
                             <a href="/admin">Správa používateľkých účtov</a><hr>
                         <a href="/home/active">Aktuálne aktívny tréning</a><hr>
-                            <a href="/adminnews">Zadávanie aktualít</a></div>
+                            <a href="/adminnews">Zadávanie aktualít</a><hr>
+                            <a href="/training/{{  Auth::user()->id }}">Prehľad osobných výkonov</a></div>
                     @else
-                        <div class="card-header">Zoznam tréningov<hr>
+                        <div class="card-header"><h1>Štandardný účet</h1><hr>
                         <a href="/home/active">Aktuálne aktívny tréning</a><hr>
-                            <a href="/newsletter">Aktuality</a></div>
+                            <a href="/newsletter">Aktuality</a><hr>
+                            <a href="/training/{{  Auth::user()->id }}">Prehľad osobných výkonov</a></div>
                     @endif
                     <div class="card-body">
                         @if (session('status'))

@@ -70,6 +70,12 @@
 
         <div class="py-4">
           <div class="container">
+              @guest
+              @else
+                  <a href="{{ url('/home') }}">
+                      Osobná stránka
+                  </a>
+              @endguest
               <div class="row justify-content-center">
                   <div class="col-md-8">
 
