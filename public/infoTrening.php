@@ -16,10 +16,12 @@ th, td {
     border-bottom: 1px solid #ddd;
 }
 </style>
+
 </head>
 <body>
 <p class="nadpis" ><b>uloha 8</b></p>
 <table id="myTable" class="table" border='1' cellpadding='10'>
+
 <tr><th>Meno</th> <th>Vzdialenost(KM)</th> <th>Datum</th> <th>GPSstartSIRKA</th> <th>GPSstartVYSKA</th> <th>GPScielSIRKA</th> <th>GPScielVYSKA</th> <th>Zaciatok</th> <th>Koniec</th> <th>Poznámka</th> </tr>
 
 <?php
@@ -85,6 +87,5 @@ else{
 
 
 ?>
-
 </body>
 </html>

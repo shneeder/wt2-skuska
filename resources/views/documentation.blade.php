@@ -68,6 +68,21 @@
                             </li>
                         </ul>
                         </p>
+                        <h4>/admin</h4>
+                        <p>
+                            Načítanie súboru vo formáte CSV - je potrebné vybrať súbor a následne aj potvrdiť<br>
+                            Geocoding <ul> <li> služba pre admina</li>
+                            <li> denný limit má 2500 volaní, takže som túto starosť nechal pre administrátora</li>
+
+                            <li> pre každú unikátnu adresu školy a obydlia v tabuľke users sa zavolá geocoding,
+                            napr.  $url = 'https://maps.googleapis.com/maps/api/geocode/json?address='.$urlSkola.'&key=AIzaSyDNR8tp7L03rEX6lCXnoK6DrylRznvGYeY';
+                            kde $urlSkola je daná adresa školy z databáze spracovaná funkciou rawurlencode(adresaSkoly);
+                            </li>
+                            <li> po samotnom stisnutí tlačidla pre geocoding treba čakať na všetky volania geocoding api
+                            a aktualizáciu databázy o zemepisné údaje k danej adrese
+                            </li>
+                        </ul>
+                        </p>
                     </div>
                 </div>
             </div>
